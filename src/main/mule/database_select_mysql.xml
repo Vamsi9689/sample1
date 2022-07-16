@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="526d88d3-f5f5-41c9-b1d6-9083d8fc4cba" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="4cbba53b-1c90-49fa-80a3-7a08fb0d328a" >
+		<db:my-sql-connection host="localhost" port="3306" user="root" password="root" database="vamsi" />
+	</db:config>
+	<flow name="database_select_mysqlFlow" doc:id="63c27b4c-a9e6-44b9-8c7b-f84591d4f2be" >
+		<http:listener doc:name="Listener" doc:id="5f83974b-1887-44f3-961b-2bb797174fe7" config-ref="HTTP_Listener_config" path="/sql"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a3bb38f0-216b-4a04-8654-01d42a34f9da" message="flow started..........................,"/>
+		<set-payload value='"hi"' doc:name="Set Payload" doc:id="fec6171f-2ece-4f50-b6d5-b8a0267e7964" />
+	</flow>
+</mule>
